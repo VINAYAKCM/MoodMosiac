@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Insights | Mood Tracker{% endblock %}
+
+{% block content %}
+    <section class="insights">
+        <h2>Weekly Insights</h2>
+        <div class="heatmap-container">
+            <!-- Placeholder for heatmap visualization. We'll populate this using JS and the data returned from the backend -->
+            <canvas id="moodHeatmap"></canvas>
+        </div>
+
+        <div class="suggestions">
+            <h3>Suggestions for Improvement</h3>
+            <div id="suggestions-content">
+                <!-- AI-generated suggestions will be injected here -->
+            </div>
+        </div>
+    </section>
+{% endblock content %}
