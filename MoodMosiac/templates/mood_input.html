@@ -1,70 +1,30 @@
 {% extends "base.html" %}
-{% block title %}Add Mood | Mood Tracker{% endblock %}
+{% block title %}Add Mood{% endblock %}
 {% block content %}
 <section class="mood-section card">
-    <h2 class="card-title">How are you feeling today?</h2>
-    
-    {% if positive_message %}
-    <div class="info-message">
-        {{ positive_message }}
-    </div>
-    {% endif %}
-    
-    {% if existing_entry %}
-    <p class="text-secondary">You have already added your mood for today. Feel free to update it below:</p>
-    {% endif %}
-    
-    <form action="{{ url_for('mood_input') }}" method="POST">
-        <!-- Hidden select for form submission -->
-        <select name="mood" id="mood" class="mood-select" required>
-            <option value="Happy" {% if existing_entry and existing_entry['mood'] == 'Happy' %}selected{% endif %}>Happy</option>
-            <option value="Excited" {% if existing_entry and existing_entry['mood'] == 'Excited' %}selected{% endif %}>Excited</option>
-            <option value="Neutral" {% if existing_entry and existing_entry['mood'] == 'Neutral' %}selected{% endif %}>Neutral</option>
-            <option value="Stressed" {% if existing_entry and existing_entry['mood'] == 'Stressed' %}selected{% endif %}>Stressed</option>
-            <option value="Sad" {% if existing_entry and existing_entry['mood'] == 'Sad' %}selected{% endif %}>Sad</option>
-        </select>
-        
-        <!-- Emoji mood selector -->
-        <div class="mood-options">
-            <div class="mood-option" data-mood="Happy">
-                <span class="emoji">😊</span>
-                <span class="label">Happy</span>
-            </div>
-            <div class="mood-option" data-mood="Excited">
-                <span class="emoji">🤩</span>
-                <span class="label">Excited</span>
-            </div>
-            <div class="mood-option" data-mood="Neutral">
-                <span class="emoji">😐</span>
-                <span class="label">Neutral</span>
-            </div>
-            <div class="mood-option" data-mood="Stressed">
-                <span class="emoji">😓</span>
-                <span class="label">Stressed</span>
-            </div>
-            <div class="mood-option" data-mood="Sad">
-                <span class="emoji">😔</span>
-                <span class="label">Sad</span>
-            </div>
-        </div>
+    <h2>How are you feeling today?</h2>
+    <form id="mood-form">
+        <label for="date">Choose a Date:</label>
+        <input type="date" id="date" name="date" required />
 
-        <div class="form-group">
-            <label for="reason">What's on your mind? (optional)</label>
-            <textarea 
-                id="reason" 
-                name="reason" 
-                placeholder="Share your thoughts..."
-            >{% if existing_entry %}{{existing_entry['reason']}}{% endif %}</textarea>
-        </div>
-        
-        <button type="submit" class="btn btn-primary">
-            {% if existing_entry %}Update{% else %}Save{% endif %}
-        </button>
+        <label for="mood">Select Your Mood:</label>
+        <select id="mood" name="mood" required>
+            <option value="Happy">😊 Happy</option>
+            <option value="Excited">🤩 Excited</option>
+            <option value="Neutral">😐 Neutral</option>
+            <option value="Stressed">😓 Stressed</option>
+            <option value="Sad">😔 Sad</option>
+        </select>
+
+        <label for="reason">Reason (Optional):</label>
+        <textarea id="reason" name="reason" placeholder="Share your thoughts..."></textarea>
+
+        <button type="submit">Save Mood</button>
     </form>
 </section>
 
-<hr />
-<h2>Your Mood Calendar</h2>
-<div id="cal-heatmap"></div>
-
-{% endblock content %}
+<section class="heatmap-section">
+    <h2>Your Mood Calendar</h2>
+    <div id="heatmap"></div>
+</section>
+{% endblock %}

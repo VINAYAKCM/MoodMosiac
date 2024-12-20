@@ -332,3 +332,22 @@ footer {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+.heatmap-section {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  margin-top: 20px;
+}
+
+.heatmap-cell {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+}
+
+.heatmap-cell.happy { background-color: #FFD700; }
+.heatmap-cell.excited { background-color: #FF6347; }
+.heatmap-cell.neutral { background-color: #ADD8E6; }
+.heatmap-cell.stressed { background-color: #FFA07A; }
+.heatmap-cell.sad { background-color: #87CEFA; }
